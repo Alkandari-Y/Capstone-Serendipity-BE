@@ -1,0 +1,31 @@
+[
+  {
+    "model": "checkins.question",
+    "pk": 1,
+    "fields": { "question": "How Am I Feeling Today?" }
+  },
+  {
+    "model": "checkins.question",
+    "pk": 2,
+    "fields": { "question": "What's Been Worrying Me Lately?" }
+  },
+  {
+    "model": "checkins.question",
+    "pk": 3,
+    "fields": { "question": "Am I Providing My Body With Its Basic Needs?" }
+  },
+  {
+    "model": "checkins.question",
+    "pk": 4,
+    "fields": {
+      "question": "What Am I Doing to Bring Myself Joy?"
+    }
+  },
+  {
+    "model": "checkins.question",
+    "pk": 5,
+    "fields": {
+      "question": "Who Do I Have In My Corner?"
+    }
+  }
+]
