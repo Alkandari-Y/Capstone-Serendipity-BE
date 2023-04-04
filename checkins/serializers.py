@@ -17,11 +17,10 @@ class AnswerReadOnlySerializer(serializers.ModelSerializer):
     question = QuestionSerializer(read_only=True)
 
 
-class AnswerSerializer(serializers.ModelSerializer):
+class AnswerCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Answer
-        fields = "__all__"
-
+        fields = ["question", "answer"]
 
 class AnswerUpdateSerializer(serializers.ModelSerializer):
     class Meta:

@@ -5,6 +5,8 @@ from django.conf import settings
 
 from core.schema import schema_view
 
+admin.site.site_header=settings.ADMIN_SITE_HEADER
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/docs/swagger/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
