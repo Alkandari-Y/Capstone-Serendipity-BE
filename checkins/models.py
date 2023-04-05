@@ -9,21 +9,21 @@ class Question(models.Model):
     question = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.id}: {self.question[:10]}"
+        return self.question[:20]
 
 
 class Checkin(models.Model):
     class Meta:
         unique_together = (
             "user",
-            "date",
+            "created_at",
         )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="checkins")
-    date = models.DateField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
-    def __str__(self) -> str:
-        return f"{self.date}: {self.user.username}"  # type: ignore
+    def __str__(self):
+        return f"Checkin ID {self.pk}"
 
 
 class Answer(models.Model):
@@ -41,5 +41,9 @@ class Answer(models.Model):
     )
     answer = models.CharField(max_length=255)
 
+    @property
+    def user(self):
+        return self.checkin.user
+
     def __str__(self):
-        return f"{self.checkin.date}: {self.question.__str__()}"
+        return f"Answer ID {self.pk} - {self.user}"

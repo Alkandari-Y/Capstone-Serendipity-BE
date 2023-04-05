@@ -22,6 +22,7 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
         model = models.Answer
         fields = ["question", "answer"]
 
+
 class AnswerUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Answer
@@ -31,6 +32,6 @@ class AnswerUpdateSerializer(serializers.ModelSerializer):
 class CheckinListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Checkin
-        fields = ["id", "date", "answers"]
+        fields = ["id", "created_at", "answers"]
 
     answers = AnswerReadOnlySerializer(many=True, read_only=True)

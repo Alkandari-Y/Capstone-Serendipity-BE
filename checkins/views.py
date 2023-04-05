@@ -6,7 +6,6 @@ from checkins.permissions import RespondentOnly
 from checkins.services import (
     serialize_answers_to_list,
     create_checkin_for_user,
-    create_answers_for_daily_checkin,
 )
 
 

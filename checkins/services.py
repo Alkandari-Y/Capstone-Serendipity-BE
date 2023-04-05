@@ -32,7 +32,7 @@ def create_checkin_for_user(user, serializer=None, answers_list=None):
     try:
         checkin = models.Checkin.objects.create(user=user)
     except IntegrityError as e:
-        if "checkins_checkin.date" in str(e):
+        if "checkins_checkin.created_at" in str(e):
             raise ValidationError(
                 detail={"checkin": ["Daily checkin limit reached!"]},
                 code=status.HTTP_400_BAD_REQUEST,
