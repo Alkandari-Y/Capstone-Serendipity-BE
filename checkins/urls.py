@@ -23,4 +23,9 @@ urlpatterns = [
         views.CheckinsListAPiView.as_view(),
         name="api_checkins_list",
     ),
+    path(
+        "wellness-check/feelings/",
+        views.FeelingAPIView.as_view(),
+        name="api_feelings_stats",
+    ),
 ]

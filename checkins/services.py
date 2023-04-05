@@ -6,6 +6,15 @@ from checkins import models
 
 
 def serialize_answers_to_list(answers_list, serializer):
+    if len(answers_list) == 0:
+        raise ValidationError(
+                detail={
+                    "Answer": [
+                        f"No answers created!"
+                    ]
+                },
+                code=status.HTTP_400_BAD_REQUEST,
+            )
     return [
         answer_serializer
         for answer in answers_list

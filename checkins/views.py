@@ -1,5 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import Response, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from checkins import models, serializers
 from checkins.permissions import RespondentOnly
@@ -53,3 +55,11 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
             answers_list=valid_answers,
         )
         return Response(data=checkin, status=status.HTTP_201_CREATED)
+
+class FeelingAPIView(generics.CreateAPIView):
+    serializer_class = serializers.FeelingSerializer
+    queryset = models.FeelingType.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+

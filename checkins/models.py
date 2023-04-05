@@ -47,3 +47,27 @@ class Answer(models.Model):
 
     def __str__(self):
         return f"Answer ID {self.pk} - {self.user}"
+
+
+class FeelingType(models.Model):
+    feeling_type = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return self.feeling_type
+
+
+class Feeling(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="feelings_choices"
+    )
+    choice = models.ForeignKey(
+        FeelingType, on_delete=models.CASCADE, related_name="feelings_choices"
+    )
+    created_at = models.DateField(auto_now_add=True)
+
+    @property
+    def stats(self):
+        return self.choice.feelings_choices.filter(created_at=self.created_at).count()
+
+    def __str__(self):
+        return f"Feeling Choice ID {self.pk} - {self.user}"
