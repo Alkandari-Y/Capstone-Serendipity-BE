@@ -30,4 +30,17 @@ class AnswerAdmin(admin.ModelAdmin):
         print(instance)
 
 
-admin.site.register([models.Feeling, models.FeelingType])
+@admin.register(models.Feeling)
+class FeelingAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (
+            None,
+            {
+                "fields": ["user", "choice", "created_at"],
+            },
+        ),
+
+    ]
+
+
+admin.site.register(models.FeelingType)

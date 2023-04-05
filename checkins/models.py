@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from django.contrib.auth import get_user_model
 
@@ -63,7 +64,7 @@ class Feeling(models.Model):
     choice = models.ForeignKey(
         FeelingType, on_delete=models.CASCADE, related_name="feelings_choices"
     )
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField(default=timezone.now)
 
     @property
     def stats(self):
