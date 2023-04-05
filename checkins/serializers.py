@@ -47,6 +47,3 @@ class FeelingSerializer(serializers.ModelSerializer):
     )
     stats = serializers.IntegerField(read_only=True)
 
-
-    def save(self, **kwargs):
-        return super().save(**kwargs)
