@@ -48,9 +48,9 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
         valid_answers = serialize_answers_to_list(
             request.data, serializers.AnswerCreateSerializer
         )
-        checkin = create_checkin_for_user(user=request.user)
-        create_answers_for_daily_checkin(checkin, valid_answers)
-
-        return Response(
-            data=self.serializer_class(checkin).data, status=status.HTTP_201_CREATED
+        checkin = create_checkin_for_user(
+            user=request.user,
+            serializer=self.serializer_class,
+            answers_list=valid_answers,
         )
+        return Response(data=checkin, status=status.HTTP_201_CREATED)

@@ -13,18 +13,6 @@ def serialize_answers_to_list(answers_list, serializer):
     ]
 
 
-def create_checkin_for_user(user):
-    try:
-        checkin = models.Checkin.objects.create(user=user)
-    except IntegrityError as e:
-        if "checkins_checkin.date" in str(e):
-            raise ValidationError(
-                detail={"checkin": ["Daily checkin limit reached!"]},
-                code=status.HTTP_400_BAD_REQUEST,
-            )
-    return checkin
-
-
 def create_answers_for_daily_checkin(checkin, answers):
     for answer in answers:
         try:
@@ -38,3 +26,18 @@ def create_answers_for_daily_checkin(checkin, answers):
                 },
                 code=status.HTTP_400_BAD_REQUEST,
             )
+
+
+def create_checkin_for_user(user, serializer=None, answers_list=None):
+    try:
+        checkin = models.Checkin.objects.create(user=user)
+    except IntegrityError as e:
+        if "checkins_checkin.date" in str(e):
+            raise ValidationError(
+                detail={"checkin": ["Daily checkin limit reached!"]},
+                code=status.HTTP_400_BAD_REQUEST,
+            )
+    if answers_list is not None:
+        create_answers_for_daily_checkin(checkin, answers_list)
+    if serializer is not None:
+        return serializer(instance=checkin).data
