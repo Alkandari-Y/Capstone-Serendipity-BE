@@ -27,5 +27,34 @@
     "fields": {
       "question": "Who Do I Have In My Corner?"
     }
+  },
+  {
+    "model": "checkins.feelingtype",
+    "pk": 1,
+    "fields": { "feeling_type": "Happy" }
+  },
+  {
+    "model": "checkins.feelingtype",
+    "pk": 2,
+    "fields": { "feeling_type": "Meh" }
+  },
+  {
+    "model": "checkins.feelingtype",
+    "pk": 3,
+    "fields": { "feeling_type": "Hangry" }
+  },
+  {
+    "model": "checkins.feelingtype",
+    "pk": 4,
+    "fields": {
+      "feeling_type": "Sad"
+    }
+  },
+  {
+    "model": "checkins.feelingtype",
+    "pk": 5,
+    "fields": {
+      "feeling_type": "Loco"
+    }
   }
 ]

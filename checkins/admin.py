@@ -28,3 +28,6 @@ class AnswerAdmin(admin.ModelAdmin):
 
     def get_user(self, instance):
         print(instance)
+
+
+admin.site.register([models.Feeling, models.FeelingType])

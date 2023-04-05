@@ -6,7 +6,7 @@
 1. Load questions fixtures with the following command
 
    ```shell
-   py manage.py loaddata checkins/fixtures/questions.json
+   py manage.py loaddata checkins/fixtures/checkin-app.json
    ```
 
 ## API References

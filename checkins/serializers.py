@@ -35,3 +35,18 @@ class CheckinListSerializer(serializers.ModelSerializer):
         fields = ["id", "created_at", "answers"]
 
     answers = AnswerReadOnlySerializer(many=True, read_only=True)
+
+
+class FeelingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Feeling
+        fields = ["choice", "stats"]
+    choice = serializers.PrimaryKeyRelatedField(
+        queryset=models.FeelingType.objects.all(), 
+        write_only=True
+    )
+    stats = serializers.IntegerField(read_only=True)
+
+
+    def save(self, **kwargs):
+        return super().save(**kwargs)
