@@ -28,4 +28,9 @@ urlpatterns = [
         views.FeelingAPIView.as_view(),
         name="api_feelings_stats",
     ),
+    path(
+        "wellness-check/wellness-check/feeling-options//",
+        views.FeelingTypesAPIView.as_view(),
+        name="api_feelings_stats",
+    ),
 ]

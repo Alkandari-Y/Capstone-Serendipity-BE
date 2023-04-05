@@ -47,3 +47,7 @@ class FeelingSerializer(serializers.ModelSerializer):
     )
     stats = serializers.IntegerField(read_only=True)
 
+class FeelingTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.FeelingType
+        fields = "__all__"

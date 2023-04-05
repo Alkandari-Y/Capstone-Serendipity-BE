@@ -55,10 +55,13 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
         )
         return Response(data=checkin, status=status.HTTP_201_CREATED)
 
+
+class FeelingTypesAPIView(generics.ListAPIView):
+    serializer_class = serializers.FeelingTypeSerializer
+    queryset = models.FeelingType.objects.all()
+
 class FeelingAPIView(generics.CreateAPIView):
     serializer_class = serializers.FeelingSerializer
-    queryset = models.FeelingType.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
