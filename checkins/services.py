@@ -11,7 +11,7 @@ def serialize_answers_to_list(answers_list, serializer):
     if len(answers_list) == 0:
         raise ValidationError(
                 detail={
-                    "Answer": [
+                    "answer": [
                         f"No answers created!"
                     ]
                 },
@@ -31,7 +31,7 @@ def create_answers_for_daily_checkin(checkin, answers):
         except IntegrityError as e:
             raise ValidationError(
                 detail={
-                    "Answer": [
+                    "answer": [
                         f"An answer for question with id {answer.validated_data['question'].id} already exists for your current daily checkin!"
                     ]
                 },
