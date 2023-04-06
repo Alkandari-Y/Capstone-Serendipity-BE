@@ -18,7 +18,7 @@ class AnswerInline(admin.TabularInline):
 class CheckinAdmin(admin.ModelAdmin):
     list_display = ["id", "user", "created_at"]
     list_display_links = ["id", "user", "created_at"]
-    readonly_fields = ["created_at"]
+    # readonly_fields = ["created_at"]
     inlines = [AnswerInline]
 
 

@@ -42,7 +42,11 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
     serializer_class = serializers.CheckinListSerializer
 
     def get_queryset(self):
-        return models.Checkin.objects.filter(user=self.request.user)
+        limit = self.request.query_params.get('latest', None)
+        qs = models.Checkin.objects.filter(user=self.request.user)
+        if not limit:
+            return qs
+        return qs.order_by('-created_at')[:int(limit)]
 
     def create(self, request, *args, **kwargs):
         valid_answers = serialize_answers_to_list(
