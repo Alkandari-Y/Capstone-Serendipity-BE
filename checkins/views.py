@@ -63,9 +63,7 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
 
 class DailyCheckinVerification(APIView):
     def get(self, request, format=None):
-
         qs = models.Checkin.objects.filter(user=request.user, created_at=date.today()).exists()
-        
         return Response(data={"completed": qs}, status=status.HTTP_200_OK)
 
 class FeelingTypesAPIView(generics.ListAPIView):
