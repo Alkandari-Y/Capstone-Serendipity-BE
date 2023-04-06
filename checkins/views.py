@@ -1,6 +1,8 @@
 from rest_framework import generics
-from rest_framework.views import Response, status
+from rest_framework.views import Response, status, APIView
 from rest_framework.response import Response
+
+from datetime import  date
 
 from checkins import models, serializers
 from checkins.permissions import RespondentOnly
@@ -59,6 +61,12 @@ class CheckinsListAPiView(generics.ListCreateAPIView):
         )
         return Response(data=checkin, status=status.HTTP_201_CREATED)
 
+class DailyCheckinVerification(APIView):
+    def get(self, request, format=None):
+
+        qs = models.Checkin.objects.filter(user=request.user, created_at=date.today()).exists()
+        
+        return Response(data={"completed": qs}, status=status.HTTP_200_OK)
 
 class FeelingTypesAPIView(generics.ListAPIView):
     serializer_class = serializers.FeelingTypeSerializer

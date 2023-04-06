@@ -31,6 +31,11 @@ urlpatterns = [
     path(
         "wellness-check/feeling-options/",
         views.FeelingTypesAPIView.as_view(),
-        name="api_feelings_stats",
+        name="api_feelings_types",
+    ),
+    path(
+        "wellness-check/verify/",
+        views.DailyCheckinVerification.as_view(),
+        name="api_checkin_verification",
     ),
 ]
