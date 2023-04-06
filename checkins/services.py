@@ -2,6 +2,8 @@ from rest_framework.views import status
 from django.db import IntegrityError
 from rest_framework.serializers import ValidationError
 
+from datetime import  date
+
 from checkins import models
 
 
@@ -39,7 +41,7 @@ def create_answers_for_daily_checkin(checkin, answers):
 
 def create_checkin_for_user(user, serializer=None, answers_list=None):
     try:
-        checkin = models.Checkin.objects.create(user=user)
+        checkin = models.Checkin.objects.create(user=user, created_at=date.today())
     except IntegrityError as e:
         if "checkins_checkin.created_at" in str(e):
             raise ValidationError(
